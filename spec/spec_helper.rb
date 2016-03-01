@@ -1,5 +1,13 @@
-def stub_omniauth
-
+def user
+  User.create(
+              nickname: "bdubb",
+              name: "Brant Wellman",
+              location: "Denver, CO",
+              secret: ENV['BW_SECRET'],
+              token: ENV['BW_TOKEN'],
+              uid: "12345",
+              provider: "twitter"
+              )
 end
 
 RSpec.configure do |config|
