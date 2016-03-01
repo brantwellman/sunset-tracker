@@ -11,11 +11,11 @@ class ApplicationController < ActionController::Base
 
   # protected
   #
-  # def layout_by_resource
-  #   if params["controller"] == "home"
-  #     "home"
-  #   else
-  #     "application"
+  #   def layout_by_resource
+  #     if params["controller"] == "home"
+  #       "home"
+  #     else
+  #       "application"
+  #     end
   #   end
-  # end
 end

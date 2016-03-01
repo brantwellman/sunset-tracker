@@ -14,8 +14,8 @@
   <!-- Sets background image differently for the home page -->
 <% if current_page?(root_path) %>
   <body class = "landing-image">
-<% else %>
-  <body class = "hero-image">
+<% elsif current_page?(new_location_path) %>
+  <body class = "location-info">
 <% end %>
 
 <% if current_user %>
