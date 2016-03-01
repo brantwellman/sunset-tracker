@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: sunset_tracker_production
-  username: sunset_tracker
-  password: <%= ENV['SUNSET_TRACKER_DATABASE_PASSWORD'] %>
