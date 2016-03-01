@@ -9,6 +9,12 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    session.clear
+    flash[:notice] = {color: "white", message: "Goodbye"}
+    redirect_to root_path
+  end
+
   private
 
     def auth_hash
