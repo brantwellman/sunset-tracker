@@ -21,6 +21,18 @@
   <body class = "hero-image">
 <% end %>
 
+<% if current_user %>
+  <nav class="transparent">
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="right">
+        <li><%= link_to "Most Recent", "#" %></li>
+        <li><%= link_to "Logout", "#" %></li>
+      </ul>
+    </div>
+  </nav>
+<% end %>
+
+
 <%= yield %>
 
 
