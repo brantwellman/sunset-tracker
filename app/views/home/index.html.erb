@@ -1,0 +1,9 @@
+<h1>The Sunset Tracker</h1>
+
+<% if current_user %>
+  <p>
+    Welcome back, <%= current_user.name %>!
+  </p>
+<% else %>
+  <%= link_to "Login with Twitter", "/auth/twitter" %>
+<% end %>
