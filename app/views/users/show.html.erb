@@ -1,0 +1,17 @@
+<div id="location-form" class="container">
+  <%= form_for @user do |f| %>
+    *<%= f.label :address, class: "form-text" %>
+    <%= f.text_field :address %>
+
+    *<%= f.label :city, class: "form-text" %>
+    <%= f.text_field :city %>
+
+    *<%= f.label :state, class: "form-text" %>
+    <%= f.text_field :state %>
+
+    *<%= f.label :zipcode, class: "form-text" %>
+    <%= f.text_field :zipcode %>
+
+    <%= f.submit "Submit", class:"submit-btn" %>
+  <% end %>
+</div>
