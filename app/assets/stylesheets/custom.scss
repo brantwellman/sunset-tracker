@@ -1,0 +1,37 @@
+.landing-image {
+  background: url("/assets/landing-page.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.hero-image {
+  background: url("/assets/sunset-pier.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.home-title {
+  color: white;
+  font-size: 70px;
+  margin-top: 70px;
+}
+
+.welcome {
+  color: #ff8f00;
+  font-size: 25px;
+  margin-bottom: 30px;
+}
+
+.new-location {
+  background-color: rgba(219, 211, 202, .6);
+}
+
+.login {
+  font-size: 11px;
+}
