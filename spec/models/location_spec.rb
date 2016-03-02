@@ -6,6 +6,5 @@ RSpec.describe Location, type: :model do
     expected = "1510 Blake St, Denver, CO, 80202"
 
     expect(location.full_street_address).to eq(expected)
-    # assert_equal expected, user.full_street_address
   end
 end

@@ -11,6 +11,7 @@ gem 'pg'
 gem 'pry'
 gem 'omniauth-twitter'
 gem 'geocoder'
+gem 'faraday'
 
 group :development, :test do
   gem 'byebug'

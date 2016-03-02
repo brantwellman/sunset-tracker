@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class LocationsController < ApplicationController
 
   def new
@@ -5,8 +7,10 @@ class LocationsController < ApplicationController
   end
 
   def show
-    # binding.pry
     @location = Location.find(params[:id])
+    sun_service = SunriseSunsetService.new(@location)
+    @sunrise = sun_service.sunrise
+    @sunset = sun_service.sunset
   end
 
   def create
