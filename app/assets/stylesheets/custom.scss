@@ -16,6 +16,15 @@
   background-attachment: fixed;
 }
 
+.location-show {
+  background: url("/assets/location-show.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .home-title {
   color: white;
   font-size: 70px;
@@ -28,25 +37,53 @@
   margin-bottom: 30px;
 }
 
-// .new-location {
-//   background-color: rgba(219, 211, 202, .6);
-// }
+.where-title {
+  color: white;
+  font-size: 55px;
+  margin-top: 30px;
+}
+
+.show-title {
+  color: white;
+  font-size: 55px;
+  margin-top: 70px;
+}
 
 .login {
   font-size: 11px;
 }
 
 #location-form {
-  background-color: rgba(164, 185, 191, .6);
-  // font-family: "Special Elite";
+  background-color: rgba(112, 175, 196, .6);
   font-weight: bold;
   color: white;
   width: 50%;
   margin-top: 20px;
   margin-bottom: 50px;
+  border-radius: 7px;
 }
 
 .form-text {
   color: black;
   font-size: 1.2em;
+}
+
+.submit-btn {
+  color: black;
+  padding: 5px;
+}
+
+.datepicker {
+  color: black;
+  font-size: 1.2em;
+}
+
+#show-table {
+  background-color: rgba(222, 183, 182, .6);
+  color: white;
+  width: 50%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 7px;
+  font-size: 16px;
 }

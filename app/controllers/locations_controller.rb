@@ -8,9 +8,14 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+    forecast_service = ForecastService.new(@location)
+    @forecast_info = forecast_service.forecast_info
+    @sunrise = forecast_service.sunrise
+    @sunset = forecast_service.sunset
+    @sunrise_weather = forecast_service.sunrise_weather
+    @sunset_weather = forecast_service.sunset_weather
     sun_service = SunriseSunsetService.new(@location)
-    @sunrise = sun_service.sunrise
-    @sunset = sun_service.sunset
+    # @sunrise = sun_service.sunrise
   end
 
   def create
