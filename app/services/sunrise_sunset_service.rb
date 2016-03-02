@@ -9,7 +9,7 @@ class SunriseSunsetService
   end
 
   def sunrise_sunset
-    parse(connection.get("/json?lat=#{location.latitude}&lng=#{location.longitude}&date=2016-03-02"))
+    parse(connection.get("/json?lat=#{location.latitude}&lng=#{location.longitude}&date=#{location.date}"))
   end
 
   def sunrise

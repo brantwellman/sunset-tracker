@@ -17,3 +17,5 @@
 
 # Simplecov coverage file
 /coverage
+
+/spec/vcr
