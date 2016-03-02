@@ -14,7 +14,7 @@ class LocationsController < ApplicationController
     @sunset = forecast_service.sunset
     @sunrise_weather = forecast_service.sunrise_weather
     @sunset_weather = forecast_service.sunset_weather
-    sun_service = SunriseSunsetService.new(@location)
+    # sun_service = SunriseSunsetService.new(@location)
     # @sunrise = sun_service.sunrise
   end
 

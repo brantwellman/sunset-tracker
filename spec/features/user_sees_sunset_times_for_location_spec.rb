@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "user enters address to view sunset/sunrise times", type: :feature do
+RSpec.feature "user enters address to view sunset/sunrise times", type: :feature, vcr: true do
 
   context "user sees sunrise/sunset times after entering location and a date" do
     it "sees valid times" do
@@ -18,8 +18,11 @@ RSpec.feature "user enters address to view sunset/sunrise times", type: :feature
       location = Location.first
 
       expect(current_path).to eq(location_path(location))
-      expect(page).to have_content("Time of sunset:")
-      expect(page).to have_content("5:05:55 PM")
+      expect(page).to have_content("Sunset:")
+      expect(page).to have_content("5:52 PM")
+      expect(page).to have_content("Sunrise:")
+      expect(page).to have_content("6:35 AM")
+      expect(page).to have_content("Partly Cloudy")
     end
   end
 end
