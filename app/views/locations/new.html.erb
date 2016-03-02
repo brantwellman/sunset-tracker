@@ -19,8 +19,8 @@
       *<%= f.label :zipcode, class: "form-text" %>
       <%= f.text_field :zipcode %>
 
-      <%= f.label :date, class: "form-text" %>
-      <%= f.date_select :date %>
+      *<%= f.label :date, class: "datepicker"  %>
+      <%= f.text_field :date, class: "datepicker" %>
 
       <%= f.submit "Submit", class:"submit-btn" %>
     <% end %>

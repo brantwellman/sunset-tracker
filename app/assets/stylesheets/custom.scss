@@ -28,10 +28,25 @@
   margin-bottom: 30px;
 }
 
-.new-location {
-  background-color: rgba(219, 211, 202, .6);
-}
+// .new-location {
+//   background-color: rgba(219, 211, 202, .6);
+// }
 
 .login {
   font-size: 11px;
+}
+
+#location-form {
+  background-color: rgba(164, 185, 191, .6);
+  // font-family: "Special Elite";
+  font-weight: bold;
+  color: white;
+  width: 50%;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.form-text {
+  color: black;
+  font-size: 1.2em;
 }
