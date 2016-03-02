@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Location, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "returns full address in string" do
+    location = create(:location)
+    expected = "1510 Blake St, Denver, CO, 80202"
+
+    expect(location.full_street_address).to eq(expected)
+    # assert_equal expected, user.full_street_address
+  end
 end

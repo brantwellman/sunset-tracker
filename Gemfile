@@ -10,6 +10,7 @@ gem 'figaro'
 gem 'pg'
 gem 'pry'
 gem 'omniauth-twitter'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug'
@@ -23,7 +24,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'webmock'
+  # gem 'webmock'
   gem 'vcr'
 end
 
