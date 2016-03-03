@@ -34,9 +34,12 @@ describe "ForecastCleaner" do
   end
 
   it "retuns the weather for the matching sunrise time" do
-    weather = @cleaner.sunrise_weather
+    VCR.use_cassette("forecast_service#forecast_info") do
 
-    expect(weather).to eq("Partly Cloudy")
+      weather = @cleaner.sunrise_weather
+
+      expect(weather).to eq("Clear")
+    end
   end
 
   it "returns rounds the unix time to the nearest hour" do
@@ -48,8 +51,11 @@ describe "ForecastCleaner" do
   end
 
   it "returns the proper hourly forecast given the unix time" do
-    forecast = @cleaner.hour_forecast(1456837200)
+    VCR.use_cassette("forecast_service#forecast_info") do
 
-    expect(forecast).to eq("Partly Cloudy")
+      forecast = @cleaner.hour_forecast(1456837200)
+
+      expect(forecast).to eq("Clear")
+    end
   end
 end
