@@ -7,7 +7,7 @@ describe "ForecastService" do
     @service = ForecastService.new(location)
   end
 
-  context "forecest" do
+  context "forecast" do
     it "returns full forecast object" do
       VCR.use_cassette("forecast_service#forecast_info") do
         forecast_info = @service.forecast_info
