@@ -17,3 +17,7 @@
 
 # Simplecov coverage file
 /coverage
+
+/spec/vcr
+
+.DS_Store

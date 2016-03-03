@@ -1,17 +1,62 @@
-<div id="location-form" class="container">
-  <%= form_for @user do |f| %>
-    *<%= f.label :address, class: "form-text" %>
-    <%= f.text_field :address %>
+<table class="container bordered highlight site-font">
+  <thead>
+    <tr class="duffel-table table-headers">
+        <th class="item-header" data-field="image">Item</th>
+        <th data-field="item"></th>
+        <th class="center" data-field="quantity">Quantity</th>
+        <th class="center" data-field="price">Price</th>
+        <th class="center" data-field="total">Total</th>
+        <th class="right" data-field="remove"></th>
+    </tr>
+  </thead>
 
-    *<%= f.label :city, class: "form-text" %>
-    <%= f.text_field :city %>
+  <tbody>
+    <% @duffel.duffel_items.each do |item| %>
+      <tr class="order-item-table">
+        <td>
+          <div class="order-image center">
+            <%= image_tag(item.image) %>
+          </div>
+        </td>
 
-    *<%= f.label :state, class: "form-text" %>
-    <%= f.text_field :state %>
+        <td>
+          <div class="cart-item-info">
+            <%= link_to item.title.capitalize, item, class: "order-item-title" %>
+            <p><%= item.description %></p>
+          </div>
+        </td>
 
-    *<%= f.label :zipcode, class: "form-text" %>
-    <%= f.text_field :zipcode %>
+        <td class="center order-item-quantity">
+          <%= link_to duffel_item_path(item.id, function: "subtract"), method: :patch do %>
+            <i class="minus-icon material-icons md-18 quantity-button">remove_circle_outline</i>
+          <% end %>
+            <span class="item-count"><%= @duffel.count_of(item.id) %></span>
+          <%= link_to duffel_item_path(item.id, function: "add"), method: :patch do %>
+            <i class="md-18 material-icons quantity-button">add_circle_outline</i>
+          <% end %>
+        </td>
 
-    <%= f.submit "Submit", class:"submit-btn" %>
-  <% end %>
-</div>
+        <td class="item-price center"><%= number_to_currency(item.price) %></td>
+
+        <td class="center item-subtotal"><%= number_to_currency(@duffel.item_subtotal(item.id)) %></td>
+        <td>
+          <%= link_to duffel_item_path(item.id, function: "remove"), method: :patch do %>
+            <i class="material-icons md-18 remove-button">clear</i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    <tr class="duffel-table order-subtotal">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td class="right-align">
+        <strong>Subtotal:</strong>
+      </td>
+      <td class="center">
+        <%= number_to_currency(@duffel.cart_subtotal) %>
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
