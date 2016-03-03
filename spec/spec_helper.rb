@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start 'rails'
+
 def user
   User.create(
               nickname: "bdubb",
