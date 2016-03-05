@@ -4,31 +4,31 @@ require 'spec_helper'
 describe "ForecastCleaner" do
 
   before do
-    @cleaner = ForecastCleaner.new(location)
+    @cleaner = ForecastCleaner.new([location])
   end
 
   it "returns the timezone" do
-    zone = @cleaner.timezone
+    zone = @cleaner.timezones[0]
 
     expect(zone).to eq("America/Denver")
   end
 
   it "returns the sunrise time in the proper format" do
-    zone = @cleaner.timezone
-    time = @cleaner.sunrise
+    zone = @cleaner.timezones[0]
+    time = @cleaner.sunrises[0]
 
     expect(time).to eq(" 6:33 AM")
   end
 
   it "returns the sunset time in the proper format" do
-    zone = @cleaner.timezone
-    time = @cleaner.sunset
+    zone = @cleaner.timezones[0]
+    time = @cleaner.sunsets[0]
 
     expect(time).to eq(" 5:53 PM")
   end
 
   it "retuns the weather for the matching sunset time" do
-    weather = @cleaner.sunset_weather
+    weather = @cleaner.sunsets_weather[0]
 
     expect(weather).to eq("Partly Cloudy")
   end
@@ -36,7 +36,7 @@ describe "ForecastCleaner" do
   it "retuns the weather for the matching sunrise time" do
     VCR.use_cassette("forecast_service#forecast_info") do
 
-      weather = @cleaner.sunrise_weather
+      weather = @cleaner.sunrises_weather[0]
 
       expect(weather).to eq("Clear")
     end
@@ -52,10 +52,11 @@ describe "ForecastCleaner" do
 
   it "returns the proper hourly forecast given the unix time" do
     VCR.use_cassette("forecast_service#forecast_info") do
+      forecast = @cleaner.forecasts[0]
 
-      forecast = @cleaner.hour_forecast(1456837200)
+      weather = @cleaner.hour_forecast(1456837200, forecast)
 
-      expect(forecast).to eq("Clear")
+      expect(weather).to eq("Clear")
     end
   end
 end

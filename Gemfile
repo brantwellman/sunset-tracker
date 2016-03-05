@@ -28,6 +28,7 @@ end
 group :test do
   gem 'webmock'
   gem 'vcr'
+  gem 'mocha'
 end
 
 group :development do

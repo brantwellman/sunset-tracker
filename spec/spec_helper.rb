@@ -1,7 +1,7 @@
 require 'simplecov'
 SimpleCov.start 'rails'
 
-def user
+def create_user
   User.create(
               nickname: "bdubb",
               name: "Brant Wellman",
@@ -13,7 +13,7 @@ def user
               )
 end
 
-def login(user)
+def login(create_user)
   visit root_path
   click_on "Login with Twitter"
 end
@@ -25,7 +25,7 @@ def location
                   state: "CO",
                   zipcode: "80202",
                   date: "2016-03-02 00:00:00"
-  )
+                  )
 end
 
 RSpec.configure do |config|
@@ -33,7 +33,8 @@ RSpec.configure do |config|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
 
-  config.mock_with :rspec do |mocks|
-    mocks.verify_partial_doubles = true
-  end
+  config.mock_with :mocha
+  # config.mock_with :rspec do |mocks|
+  #   mocks.verify_partial_doubles = true
+  # end
 end

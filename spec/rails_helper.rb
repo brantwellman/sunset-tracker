@@ -18,38 +18,33 @@ ActiveRecord::Migration.maintain_test_schema!
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
                                                                 :provider => 'twitter',
-                                                                :uid => '123456',
+                                                                :uid => '12345',
                                                                 :info => {
                                                                   :nickname => 'bdubb',
-                                                                  :name => 'briandubbya',
-                                                                  :location => 'Georgetown, VA'
+                                                                  :name => 'Brant Wellman',
+                                                                  :location => 'Denver, CO'
                                                                 },
                                                                 :credentials => {
                                                                   :token => ENV['BW_TOKEN'],
                                                                   :secret => ENV['BW_SECRET']
                                                                   }
                                                                 })
-
 RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
 
-
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
   end
-
 
   config.before(:each, :js => true) do
     DatabaseCleaner.strategy = :truncation
   end
 
-
   config.before(:each) do
     DatabaseCleaner.start
   end
-
 
   config.after(:each) do
     DatabaseCleaner.clean

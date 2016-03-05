@@ -4,8 +4,9 @@ RSpec.feature "user enters address to view sunset/sunrise times", type: :feature
 
   context "user sees sunrise/sunset times after entering location and a date" do
     it "sees valid times" do
-      user
-      login(user)
+      user = create_user
+      ApplicationController.any_instance.stubs(:current_user).returns(user)
+
       visit new_location_path
 
       fill_in "Address", with: "1510 Blake St"

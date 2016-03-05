@@ -25,6 +25,15 @@
   background-attachment: fixed;
 }
 
+.user-favorites {
+  background: url("/assets/user-favorites.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .home-title {
   color: white;
   font-size: 70px;
