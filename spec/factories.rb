@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :location do
     address "1510 Blake St"
     city "Denver"

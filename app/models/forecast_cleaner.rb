@@ -1,10 +1,10 @@
 class ForecastCleaner
   attr_reader :forecasts
 
-  def initialize(locations)
+  def initialize(locations, date=nil)
     @forecasts = []
     locations.each do |location|
-      @forecasts << forecast ||= ForecastService.new(location).forecast_info
+      @forecasts << forecast ||= ForecastService.new(location, date).forecast_info
     end
   end
 
