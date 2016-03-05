@@ -8,16 +8,13 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
-    cleaner = ForecastCleaner.new(@location)
-    @sunrise = cleaner.sunrise
-    @sunset = cleaner.sunset
-    @sunrise_weather = cleaner.sunrise_weather
-    @sunset_weather = cleaner.sunset_weather
+    @cleaner = ForecastCleaner.new([@location])
   end
 
   def create
     @location = Location.create(location_params)
     if @location.save
+      current_user.locations << @location
       redirect_to location_path(@location)
     else
       flash.now[:errors] = @item.errors.full_messages.join(", ")

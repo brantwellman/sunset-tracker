@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :locations
+
   def self.find_or_create_by_auth_hash(auth)
     user = User.find_or_create_by(provider: auth["provider"], uid: auth["uid"])
 
