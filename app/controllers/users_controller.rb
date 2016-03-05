@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @locations = current_user.locations[0..2]
+    @locations = Location.user_locations(current_user)
     @cleaner = ForecastCleaner.new(@locations)
   end
 end

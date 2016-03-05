@@ -29,10 +29,10 @@ RSpec.feature "user views most recent locations on dashboard", type: :feature do
 
       visit dashboard_path
       expect(current_path).to eq(dashboard_path)
-      expect(page).to have_content("Denver")
+      expect(page).to have_content("Santa Rosa")
       expect(page).to have_content("San Francisco")
       expect(page).to have_content("Rancho Palos Verdes")
-      expect(page).to_not have_content("Santa Rosa")
+      expect(page).to_not have_content("Denver")
     end
   end
 end

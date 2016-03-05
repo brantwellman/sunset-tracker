@@ -9,4 +9,8 @@ class Location < ActiveRecord::Base
     end
   end
 
+  def self.user_locations(user)
+    all.order(id: :desc).where(user_id: user.id).first(3)
+  end
+
 end
