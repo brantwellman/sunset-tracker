@@ -26,4 +26,42 @@ RSpec.feature "user enters address to view sunset/sunrise times", type: :feature
       expect(page).to have_content("Partly Cloudy")
     end
   end
+
+  context "user sees flash for not entering all necessary location data" do
+    it "sees flash message" do
+      user = create_user
+      ApplicationController.any_instance.stubs(:current_user).returns(user)
+
+      visit new_location_path
+
+      fill_in "Address", with: "1510 Blake St"
+      fill_in "City", with: "Denver"
+      fill_in "State", with: "CO"
+      fill_in "Zipcode", with: "80202"
+
+      click_on "Submit"
+
+      expect(page).to have_content("You must fill out each field")
+      expect(current_path).to eq(new_location_path)
+    end
+  end
+
+  context "user sees flash for no data for location/date" do
+    it "sees flash message" do
+      user = create_user
+      ApplicationController.any_instance.stubs(:current_user).returns(user)
+
+      visit new_location_path
+
+      fill_in "Address", with: "4200 Franklin St"
+      fill_in "City", with: "Anchorage"
+      fill_in "State", with: "FR"
+      fill_in "Zipcode", with: "99501"
+
+      click_on "Submit"
+
+      expect(page).to have_content("Sorry there is no data for that location/date")
+      expect(current_path).to eq(new_location_path)
+    end
+  end
 end

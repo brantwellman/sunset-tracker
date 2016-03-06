@@ -14,11 +14,11 @@ class LocationsController < ApplicationController
   def create
     @location = Location.create(location_params)
     if @location.save
-      current_user.locations << @location
-      redirect_to location_path(@location)
+      successful_save
+    elsif @location.latitude.nil? || @location.longitude.nil?
+      lat_long_absent
     else
-      flash[:error] = "You must fill out each field"
-      redirect_to new_location_path
+      unsuccessful_save
     end
   end
 
@@ -36,5 +36,20 @@ class LocationsController < ApplicationController
 
     def location_params
       params.require(:location).permit(:address, :city, :state, :zipcode, :date)
+    end
+
+    def successful_save
+      current_user.locations << @location
+      redirect_to location_path(@location)
+    end
+
+    def lat_long_absent
+      flash[:error] = "Sorry there is no data for that location/date"
+      redirect_to new_location_path
+    end
+
+    def unsuccessful_save
+      flash[:error] = "You must fill out each field"
+      redirect_to new_location_path
     end
 end
