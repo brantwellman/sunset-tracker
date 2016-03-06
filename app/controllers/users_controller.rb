@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def show
-    @locations = Location.user_locations(current_user)
-    @cleaner = ForecastCleaner.new(@locations, Time.now.to_i)
+    @favorites = Location.user_favorite_locations(current_user)
+    @favorite_cleaned = ForecastCleaner.new(@favorites, Time.now.to_i)
+
+    @recents = Location.user_recent_locations(current_user)
+    @recent_cleaned = ForecastCleaner.new(@recents, Time.now.to_i)
   end
 end
