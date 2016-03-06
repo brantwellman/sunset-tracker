@@ -2,4 +2,4 @@
   <h2>Sunrise and Sunset info for <%= @location.city %></h2>
 </div>
 
-<%= render partial: "partials/locations_details", locals: { target: @location, target: @cleaner } %>
+<%= render partial: "partials/locations_details", locals: { location: @location, cleaner: @cleaner } %>
