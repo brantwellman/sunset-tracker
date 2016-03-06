@@ -52,6 +52,10 @@ class ForecastCleaner
     hour_forecast = forecast["hourly"]["data"].find do |hour|
       hour["time"] == top_hour
     end
-    hour_forecast["summary"]
+    if hour_forecast.nil?
+      "No Data"
+    else
+      hour_forecast["summary"]
+    end
   end
 end
