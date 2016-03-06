@@ -17,7 +17,7 @@ class LocationsController < ApplicationController
       current_user.locations << @location
       redirect_to location_path(@location)
     else
-      flash.now[:errors] = @item.errors.full_messages.join(", ")
+      flash[:error] = "You must fill out each field"
       redirect_to new_location_path
     end
   end

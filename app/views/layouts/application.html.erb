@@ -40,6 +40,12 @@
   </nav>
 <% end %>
 
+<% flash.each do |type, msg| %>
+  <div class="flashes col m6">
+    <%= content_tag :div, msg %>
+  </div>
+<% end %>
+
 
 <%= yield %>
 
