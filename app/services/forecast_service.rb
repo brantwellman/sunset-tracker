@@ -3,9 +3,13 @@ require 'open-uri'
 class ForecastService
   attr_reader :location, :connection, :date
 
-  def initialize(location)
+  def initialize(location, date=nil)
     @location = location
-    @date = location.date.to_i
+    if date.nil?
+      @date = location.date.to_i
+    else
+      @date = date
+    end
     @connection = Faraday.new("https://api.forecast.io")
   end
 
