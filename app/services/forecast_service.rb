@@ -17,6 +17,8 @@ class ForecastService
     parse(connection.get("/forecast/#{ENV['DARKSKY_KEY']}/#{location.latitude},#{location.longitude},#{date}"))
   end
 
+
+
   private
 
     def parse(response)

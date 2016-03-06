@@ -4,6 +4,8 @@ class UsersController < ApplicationController
     @cleaner = ForecastCleaner.new(@locations, Time.now.to_i)
   end
 
+  
+
   def forecast_data
 
   end

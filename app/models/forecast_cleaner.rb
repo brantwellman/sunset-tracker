@@ -4,14 +4,53 @@ class ForecastCleaner
   def initialize(locations, date=nil)
     @forecasts = []
     locations.each do |location|
-      @forecasts << forecast ||= ForecastService.new(location, date).forecast_info
+      if location.find_by(date: date, latitude: location.latitude, longitude: location.longitude)
+        @forecasts << location.forecast.custom_hash
+        #option1  make and call here .custom_to_hash in forecast model
+      else
+        @forecasts << forecast ||= ForecastService.new(location, date).forecast_info
+        binding.pry
+        @forecasts.each do |forecast_hash|
+          create_forecast(forecast_hash, location)
+        end
+      end
+        #option 1 needs also to create forecast model associated to this location model for this info.
+        #option 1.1 you can make that model here.
+        #option 1.1 continued:  create_model(forecast hash) where create model is a method here
+        #option 1.2 you make the model in forecast service.  FUCK THIS option
+      # end
     end
+  end
+
+  def create_forecast(forecast, location)
+    Forecast.create(
+                    summary: forecast["summary"],
+                    cloud_cover: forecast["cloudCover"],
+                    visibility: forecast["visibility"],
+                    precip_prob: forecast["precipProbability"],
+                    precip_intensity: forecast["precipIntensity"],
+                    ozone: forecast["ozone"],
+                    sunrise: sunrise_time(forecast),
+                    sunset: sunset_time(forecast),
+                    location_id: location.id,
+                    timezone: forecast["timezone"]
+                    )
   end
 
   def timezones
     @forecasts.map do |forecast|
       forecast["timezone"]
     end
+  end
+
+  def sunrise_time(forecast)
+    unix_rise = forecast["daily"]["data"].first["sunriseTime"]
+    Time.at(unix_rise).in_time_zone(timezones[index]).strftime("%l:%M %p")
+  end
+
+  def sunset_time(forecast)
+    unix_set = forecast["daily"]["data"].first["sunsetTime"]
+    Time.at(unix_set).in_time_zone(timezones[index]).strftime("%l:%M %p")
   end
 
   def sunrises
