@@ -13,7 +13,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @locations.each_with_index do |location, index| %>
+          <% @locations.first(3).each_with_index do |location, index| %>
           <% if location.favorite == 0 %>
               <tr>
                 <td><%= location.city %></td>
