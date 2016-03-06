@@ -17,7 +17,7 @@ class Seed
         date: "2016-03-01",
         user_id: 1,
         favorite: 1,
-        atitude: 39.749568939209,
+        latitude: 39.749568939209,
         longitude: -104.999961853027
       },
       {
