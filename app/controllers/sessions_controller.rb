@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
-    flash[:notice] = {color: "white", message: "Goodbye"}
     redirect_to root_path
   end
 

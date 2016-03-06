@@ -4,6 +4,7 @@ class ForecastCleaner
   def initialize(locations, date=nil)
     @forecasts = []
     locations.each do |location|
+
       if location.find_by(date: date, latitude: location.latitude, longitude: location.longitude)
         @forecasts << location.forecast.custom_hash
         #option1  make and call here .custom_to_hash in forecast model
@@ -19,6 +20,7 @@ class ForecastCleaner
         #option 1.1 continued:  create_model(forecast hash) where create model is a method here
         #option 1.2 you make the model in forecast service.  FUCK THIS option
       # end
+      @forecasts << forecast ||= ForecastService.new(location, date).forecast_info
     end
   end
 
@@ -91,6 +93,10 @@ class ForecastCleaner
     hour_forecast = forecast["hourly"]["data"].find do |hour|
       hour["time"] == top_hour
     end
-    hour_forecast["summary"]
+    if hour_forecast.nil?
+      "No Data"
+    else
+      hour_forecast["summary"]
+    end
   end
 end

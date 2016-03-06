@@ -2,39 +2,4 @@
   <h2>Sunrise and Sunset info for <%= @location.city %></h2>
 </div>
 
-<div class="row">
-  <div id="show-table" class="col m6 offset-m1">
-    <table>
-      <tbody>
-        <tr>
-          <td>Date:</td>
-          <td><%= @location.date.strftime("%B %d, %Y") %></td>
-        </tr>
-        <tr>
-          <td>Sunrise:</td>
-          <td><%= @cleaner.sunrises[0] %></td>
-        </tr>
-        <tr>
-          <td>Sunrise Weather Forecast:</td>
-          <td><%= @cleaner.sunrises_weather[0] %></td>
-        </tr>
-        <tr>
-          <td>Chance of Viewing the Sunrise:</td>
-          <td># 80% #</td>
-        </tr>
-        <tr>
-          <td>Sunset:</td>
-          <td><%= @cleaner.sunsets[0] %> </td>
-        </tr>
-        <tr>
-          <td>Sunset Weather Forecast:</td>
-          <td><%= @cleaner.sunsets_weather[0] %></td>
-        </tr>
-        <tr>
-          <td>Chance of Viewing the Sunset:</td>
-          <td># 80% #</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<%= render partial: "partials/locations_details", locals: { location: @location, cleaner: @cleaner } %>

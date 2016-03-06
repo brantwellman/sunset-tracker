@@ -1,4 +1,5 @@
 class Location < ActiveRecord::Base
+  validates :address, :city, :state, :zipcode, :date, presence: true
   geocoded_by :full_street_address
   after_validation :geocode
   belongs_to :user
@@ -10,8 +11,12 @@ class Location < ActiveRecord::Base
     end
   end
 
-  def self.user_locations(user)
+  def self.user_recent_locations(user)
     all.order(id: :desc).where(user_id: user.id).first(3)
+  end
+
+  def self.user_favorite_locations(user)
+    where(favorite: 1)
   end
 
 end
