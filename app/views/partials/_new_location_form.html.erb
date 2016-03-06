@@ -1,0 +1,30 @@
+<div class="new-location col m6 offset-m1">
+  <div id="location-form" class="container">
+    <p>
+      *Required field
+    </p>
+    <%= form_for @location do |f| %>
+      <div>
+        *<%= f.label :address, class: "form-text" %>
+        <%= f.text_field :address %>
+      </div>
+      <div>
+        *<%= f.label :city, class: "form-text" %>
+        <%= f.text_field :city %>
+      </div>
+      <div>
+        *<%= f.label :state, class: "form-text" %>
+        <%= f.text_field :state %>
+      </div>
+      <div>
+        *<%= f.label :zipcode, class: "form-text" %>
+        <%= f.text_field :zipcode %>
+      </div>
+      <div>
+        *<%= f.label :date, class: "datepicker"  %>
+        <%= f.text_field :date, class: "datepicker" %>
+      </div>
+      <%= f.submit "Submit", class:"submit-btn indigo" %>
+    <% end %>
+  </div>
+</div>

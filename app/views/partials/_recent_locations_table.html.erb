@@ -1,0 +1,32 @@
+<div>
+  <div class="row">
+    <div id="recents-table" class="col m8 offset-m2">
+      <table>
+        <thead>
+          <tr>
+            <th data-field="id">Location</th>
+            <th data-field="name">Sunrise Time</th>
+            <th data-field="price">Weather</th>
+            <th data-field="name">Sunset Time</th>
+            <th data-field="price">Weather</th>
+            <th><%= link_to "<More Data>", "#" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @locations.each_with_index do |location, index| %>
+          <% if location.favorite == 0 %>
+              <tr>
+                <td><%= location.city %></td>
+                <td><%= @cleaner.sunrises[index] %></td>
+                <td><%= @cleaner.sunrises_weather[index] %></td>
+                <td><%= @cleaner.sunsets[index] %></td>
+                <td><%= @cleaner.sunsets_weather[index] %></td>
+                <td><%= link_to "Add to favorites", location_path(location), method: :patch %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
