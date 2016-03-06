@@ -22,6 +22,12 @@ class LocationsController < ApplicationController
     end
   end
 
+  def update
+    @location = Location.find(params[:id])
+    @location.update_attribute(:favorite, 1)
+    redirect_to dashboard_path
+  end
+
   private
 
     def location_params

@@ -26,7 +26,11 @@
     <div class="nav-wrapper">
       <a href="#" class="sun-logo"></a>
       <ul id="nav-mobile" class="right">
-        <li><%= link_to "My Favorites", dashboard_path %></li>
+        <% if current_page?(new_location_path) %>
+          <li><%= link_to "My Favorites", dashboard_path %></li>
+        <% elsif current_page?(dashboard_path) %>
+          <li><%= link_to "Enter Address", new_location_path %></li>
+        <% end %>
         <li><%= link_to "Logout", logout_path, method: :delete %></li>
       </ul>
     </div>
