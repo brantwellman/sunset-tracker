@@ -1,3 +1,4 @@
+<% cache "recent-details-#{@recents.count}" do %>
 <div>
   <div class="row">
     <div id="recents-table" class="col m8 offset-m2">
@@ -9,7 +10,6 @@
             <th data-field="price">Weather</th>
             <th data-field="name">Sunset Time</th>
             <th data-field="price">Weather</th>
-            <th><%= link_to "<More Data>", "#" %></th>
           </tr>
         </thead>
         <tbody>
@@ -30,3 +30,4 @@
     </div>
   </div>
 </div>
+<% end %>

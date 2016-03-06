@@ -1,9 +1,9 @@
-<% if current_page?(root_path) %>
-  <body class = "landing-image">
-<% elsif current_page?(new_location_path) %>
-  <body class = "location-info">
-<% elsif current_page?(dashboard_path) %>
-  <body class = "user-favorites">
-<% else %>
-  <body class = "location-show">
-<% end %>
+  <% if current_page?(root_path) %>
+    <body class = "landing-image">
+  <% elsif current_page?(new_location_path) %>
+    <body class = "location-info">
+  <% elsif current_page?(dashboard_path) %>
+    <body class = "user-favorites">
+  <% else %>
+    <body class = "location-show">
+  <% end %>

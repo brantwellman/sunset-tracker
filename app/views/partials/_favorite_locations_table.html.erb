@@ -1,30 +1,32 @@
-<div>
-  <div class="row">
-    <div id="favorites-table" class="col m8 offset-m2">
-      <table>
-        <thead>
-          <tr>
-            <th data-field="id">Location</th>
-            <th data-field="name">Sunrise Time</th>
-            <th data-field="price">Weather</th>
-            <th data-field="name">Sunset Time</th>
-            <th data-field="price">Weather</th>
-            <th><%= link_to "<More Data>", "#" %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @favorites.each_with_index do |favorite, index| %>
-              <tr>
-                <td><%= favorite.city %></td>
-                <td><%= @favorite_cleaned.sunrises[index] %></td>
-                <td><%= @favorite_cleaned.sunrises_weather[index] %></td>
-                <td><%= @favorite_cleaned.sunsets[index] %></td>
-                <td><%= @favorite_cleaned.sunsets_weather[index] %></td>
-                <td><%= link_to "Remove from favorites", location_path(favorite) , method: :patch %></td>
-              </tr>
-          <% end %>
-        </tbody>
-      </table>
+<% cache "favorite-details-#{@favorites.count}" do %>
+  <div>
+    <div class="row">
+      <div id="favorites-table" class="col m8 offset-m2">
+        <table>
+          <thead>
+            <tr>
+              <th data-field="id">Location</th>
+              <th data-field="name">Sunrise Time</th>
+              <th data-field="price">Weather</th>
+              <th data-field="name">Sunset Time</th>
+              <th data-field="price">Weather</th>
+              <th><%= link_to "<More Data>", "#" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @favorites.each_with_index do |favorite, index| %>
+                <tr>
+                  <td><%= favorite.city %></td>
+                  <td><%= @favorite_cleaned.sunrises[index] %></td>
+                  <td><%= @favorite_cleaned.sunrises_weather[index] %></td>
+                  <td><%= @favorite_cleaned.sunsets[index] %></td>
+                  <td><%= @favorite_cleaned.sunsets_weather[index] %></td>
+                  <td><%= link_to "Remove from favorites", location_path(favorite) , method: :patch %></td>
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
