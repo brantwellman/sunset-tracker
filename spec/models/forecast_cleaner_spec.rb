@@ -129,15 +129,14 @@ RSpec.describe "ForecastCleaner", type: :request do
     end
   end
 
-  # it "returns the proper hourly forecast given the unix time" do
-  #   VCR.use_cassette("forecast_service#forecast_info") do
-  #     @cleaner = ForecastCleaner.new([location], location.date.to_i)
-  #
-  #     forecast = @cleaner.forecasts[0]
-  #
-  #     weather = @cleaner.hour_forecast(1457011000, forecast)
-  #
-  #     expect(weather).to eq("Clear")
-  #   end
-  # end
+  it "returns the proper hourly forecast given the unix time" do
+    VCR.use_cassette("forecast_service#forecast_info") do
+      @cleaner = ForecastCleaner.new([location], location.date.to_i)
+      forecast = @cleaner.forecasts[0]
+
+      weather = @cleaner.hour_forecast(1457013600, forecast)
+
+      expect(weather).to eq("Clear")
+    end
+  end
 end
