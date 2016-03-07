@@ -1,39 +1,38 @@
 class ForecastCleaner
   attr_reader :forecasts
 
-  def initialize(locations, date=nil)
+  def initialize(locations, date)
     @forecasts = []
     locations.each do |location|
-
-      if location.find_by(date: date, latitude: location.latitude, longitude: location.longitude)
+      if location.forecast
+        # Location.find_by(date: Time.zone.at(date), latitude: location.latitude, longitude: location.longitude)
         @forecasts << location.forecast.custom_hash
         #option1  make and call here .custom_to_hash in forecast model
       else
-        @forecasts << forecast ||= ForecastService.new(location, date).forecast_info
-        binding.pry
-        @forecasts.each do |forecast_hash|
-          create_forecast(forecast_hash, location)
-        end
+        f = ForecastService.new(location, date).forecast_info
+        create_forecast(f, location)
+        @forecasts << f
       end
         #option 1 needs also to create forecast model associated to this location model for this info.
         #option 1.1 you can make that model here.
         #option 1.1 continued:  create_model(forecast hash) where create model is a method here
         #option 1.2 you make the model in forecast service.  FUCK THIS option
       # end
-      @forecasts << forecast ||= ForecastService.new(location, date).forecast_info
     end
   end
 
   def create_forecast(forecast, location)
+    binding.pry
     Forecast.create(
-                    summary: forecast["summary"],
-                    cloud_cover: forecast["cloudCover"],
-                    visibility: forecast["visibility"],
-                    precip_prob: forecast["precipProbability"],
+                    cloud_cover: forecast["currently"]["cloudCover"],
+                    visibility: forecast["currently"]["visibility"],
+                    precip_prob: forecast["currently"]["precipProbability"],
                     precip_intensity: forecast["precipIntensity"],
-                    ozone: forecast["ozone"],
+                    ozone: forecast["currently"]["ozone"],
                     sunrise: sunrise_time(forecast),
                     sunset: sunset_time(forecast),
+                    sunrise_summary: sunrise_summary(forecast),
+                    sunset_summary: sunset_summary(forecast),
                     location_id: location.id,
                     timezone: forecast["timezone"]
                     )
@@ -47,12 +46,12 @@ class ForecastCleaner
 
   def sunrise_time(forecast)
     unix_rise = forecast["daily"]["data"].first["sunriseTime"]
-    Time.at(unix_rise).in_time_zone(timezones[index]).strftime("%l:%M %p")
+    Time.at(unix_rise).in_time_zone(forecast["timezone"]).strftime("%l:%M %p")
   end
 
   def sunset_time(forecast)
     unix_set = forecast["daily"]["data"].first["sunsetTime"]
-    Time.at(unix_set).in_time_zone(timezones[index]).strftime("%l:%M %p")
+    Time.at(unix_set).in_time_zone(forecast["timezone"]).strftime("%l:%M %p")
   end
 
   def sunrises
@@ -67,6 +66,18 @@ class ForecastCleaner
       unix_set = forecast["daily"]["data"].first["sunsetTime"]
       Time.at(unix_set).in_time_zone(timezones[index]).strftime("%l:%M %p")
     end
+  end
+
+  def sunrise_summary(forecast)
+    unix_rise = forecast["daily"]["data"].first["sunriseTime"]
+    closest_rise_hour = closest_hour(unix_rise)
+    hour_forecast(closest_rise_hour, forecast)
+  end
+
+  def sunset_summary(forecast)
+    unix_set = forecast["daily"]["data"].first["sunsetTime"]
+    closest_set_hour = closest_hour(unix_set)
+    hour_forecast(closest_set_hour, forecast)
   end
 
   def sunrises_weather
@@ -90,13 +101,13 @@ class ForecastCleaner
   end
 
   def hour_forecast(top_hour, forecast)
-    hour_forecast = forecast["hourly"]["data"].find do |hour|
+    hourly_forecast = forecast["hourly"]["data"].find do |hour|
       hour["time"] == top_hour
     end
-    if hour_forecast.nil?
+    if hourly_forecast.nil?
       "No Data"
     else
-      hour_forecast["summary"]
+      hourly_forecast["summary"]
     end
   end
 end

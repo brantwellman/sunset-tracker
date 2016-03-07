@@ -1,10 +1,53 @@
 require 'rails_helper'
 require 'spec_helper'
 
-describe "ForecastCleaner" do
+RSpec.describe "ForecastCleaner", type: :request do
 
   before do
-    @cleaner = ForecastCleaner.new([location])
+    VCR.use_cassette("forecast_cleaner#cleaner") do
+      @cleaner = ForecastCleaner.new([location], location.date.to_i)
+    end
+  end
+
+  it "creates a forecast" do
+    VCR.use_cassette("forecast_cleaner#forecast_create") do
+      forecast = @cleaner.create_forecast(@cleaner.forecasts.first, location)
+
+      expect(forecast.cloud_cover).to eq(0.36)
+      expect(forecast.sunset.to_i).to eq(1457373180)
+    end
+  end
+
+  it "returns a sunrise time" do
+    VCR.use_cassette("forecast_cleaner#sunrise_time") do
+      sunrise = @cleaner.sunrise_time(@cleaner.forecasts.first)
+
+      expect(sunrise).to eq(" 6:33 AM")
+    end
+  end
+
+  it "returns a sunset time" do
+    VCR.use_cassette("forecast_cleaner#sunset_time") do
+      sunset = @cleaner.sunset_time(@cleaner.forecasts.first)
+
+      expect(sunset).to eq(" 5:53 PM")
+    end
+  end
+
+  it "returns a sunrise weather summary" do
+    VCR.use_cassette("forecast_cleaner#sunrise_weather_sum") do
+      summary = @cleaner.sunrise_summary(@cleaner.forecasts.first)
+
+      expect(summary).to eq("Clear")
+    end
+  end
+
+  it "returns a sunset weather summary" do
+    VCR.use_cassette("forecast_cleaner#sunset_weather_sum") do
+      summary = @cleaner.sunset_summary(@cleaner.forecasts.first)
+
+      expect(summary).to eq("Partly Cloudy")
+    end
   end
 
   context "timezone" do
@@ -52,7 +95,6 @@ describe "ForecastCleaner" do
   context "weather for sunrise time" do
     VCR.use_cassette("forecast_service#weather_sunset_time") do
       it "retuns the weather for the matching sunrise time" do
-
         weather = @cleaner.sunrises_weather[0]
 
         expect(weather).to eq("Clear")

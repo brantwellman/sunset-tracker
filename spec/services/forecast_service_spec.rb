@@ -4,7 +4,7 @@ require 'rails_helper'
 describe "ForecastService" do
 
   before do
-    @service = ForecastService.new(location)
+    @service = ForecastService.new(location, location.date.to_i)
   end
 
   context "forecast" do

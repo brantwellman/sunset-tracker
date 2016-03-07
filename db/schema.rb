@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306220640) do
+ActiveRecord::Schema.define(version: 20160306225012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20160306220640) do
     t.datetime "sunrise"
     t.datetime "sunset"
     t.string   "timezone"
+    t.string   "sunrise_summary"
+    t.string   "sunset_summary"
   end
 
   add_index "forecasts", ["location_id"], name: "index_forecasts_on_location_id", using: :btree
