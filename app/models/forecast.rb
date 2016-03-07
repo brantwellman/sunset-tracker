@@ -3,14 +3,21 @@ class Forecast < ActiveRecord::Base
 
   def custom_hash
     { "timezone" => self.timezone,
+      "currently" => {
+        "cloudCover" => self.cloud_cover,
+        "visibility" => self.visibility,
+        "precipProbability" => self.precip_prob,
+        "precipIntensity" => self.precip_intensity,
+        "currently" => self.ozone
+      },
       "hourly" => {
         "data" => [
           {
-            "time" => self.sunrise.to_i,
+            "time" => top_hour(self.sunrise.to_i),
             "summary" => self.sunrise_summary
           },
           {
-            "time" => self.sunset.to_i,
+            "time" => top_hour(self.sunset.to_i),
             "summary" => self.sunset_summary
           }
           ]
@@ -22,5 +29,9 @@ class Forecast < ActiveRecord::Base
           }]
         }
     }
+  end
+
+  def top_hour(time)
+    (time.to_f/3600).round * 3600
   end
 end

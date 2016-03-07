@@ -22,7 +22,7 @@ class ForecastCleaner
   end
 
   def create_forecast(forecast, location)
-    binding.pry
+    # binding.pry
     Forecast.create(
                     cloud_cover: forecast["currently"]["cloudCover"],
                     visibility: forecast["currently"]["visibility"],
@@ -71,6 +71,7 @@ class ForecastCleaner
   def sunrise_summary(forecast)
     unix_rise = forecast["daily"]["data"].first["sunriseTime"]
     closest_rise_hour = closest_hour(unix_rise)
+    # binding.pry
     hour_forecast(closest_rise_hour, forecast)
   end
 
