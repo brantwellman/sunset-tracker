@@ -12,11 +12,11 @@ class Location < ActiveRecord::Base
   end
 
   def self.user_recent_locations(user)
-    all.order(id: :desc).where(user_id: user.id).first(3)
+    all.order(created_at: :desc).where(user_id: user.id).first(3)
   end
 
   def self.user_favorite_locations(user)
-    where(favorite: 1)
+    where(favorite: 1, user_id: user.id)
   end
 
 end

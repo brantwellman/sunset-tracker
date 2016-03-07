@@ -5,19 +5,12 @@ class ForecastCleaner
     @forecasts = []
     locations.each do |location|
       if location.forecast
-        # Location.find_by(date: Time.zone.at(date), latitude: location.latitude, longitude: location.longitude)
         @forecasts << location.forecast.custom_hash
-        #option1  make and call here .custom_to_hash in forecast model
       else
-        f = ForecastService.new(location, date).forecast_info
-        create_forecast(f, location)
-        @forecasts << f
+        forecast_hashes = ForecastService.new(location, date).forecast_info
+        create_forecast(forecast_hashes, location)
+        @forecasts << forecast_hashes
       end
-        #option 1 needs also to create forecast model associated to this location model for this info.
-        #option 1.1 you can make that model here.
-        #option 1.1 continued:  create_model(forecast hash) where create model is a method here
-        #option 1.2 you make the model in forecast service.  FUCK THIS option
-      # end
     end
   end
 

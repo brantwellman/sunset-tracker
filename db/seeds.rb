@@ -62,14 +62,6 @@ class Seed
         user_id: 1
       },
       {
-        address: "1510 Blake St",
-        city: "Denver",
-        state: "CO",
-        zipcode: "80202",
-        date: "2016-03-01",
-        user_id: 1
-      },
-      {
         address: "411 Crescent Av",
         city: "Avalon",
         state: "CA",

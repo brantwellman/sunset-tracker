@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :unauthenticated_user_error, only: [:forecast_data, :show]
 
   def show
     @favorites = Location.user_favorite_locations(current_user)
