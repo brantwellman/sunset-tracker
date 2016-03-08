@@ -10,7 +10,7 @@ RSpec.describe "ForecastCleaner", type: :request do
       forecast = @cleaner.create_forecast(@cleaner.forecasts.first, location)
 
       expect(forecast.cloud_cover).to eq(0.23)
-      expect(forecast.sunset.to_i).to eq(1457373300)
+      expect(forecast.sunset.to_i).to eq(1457459700)
     end
   end
 
