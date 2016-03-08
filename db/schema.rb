@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304233816) do
+ActiveRecord::Schema.define(version: 20160306225012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "forecasts", force: :cascade do |t|
+    t.float    "cloud_cover"
+    t.float    "precip_prob"
+    t.float    "visibility"
+    t.float    "precip_intensity"
+    t.float    "ozone"
+    t.integer  "location_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "summary"
+    t.datetime "sunrise"
+    t.datetime "sunset"
+    t.string   "timezone"
+    t.string   "sunrise_summary"
+    t.string   "sunset_summary"
+  end
+
+  add_index "forecasts", ["location_id"], name: "index_forecasts_on_location_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string   "address"
@@ -44,5 +63,6 @@ ActiveRecord::Schema.define(version: 20160304233816) do
     t.string   "provider"
   end
 
+  add_foreign_key "forecasts", "locations"
   add_foreign_key "locations", "users"
 end
