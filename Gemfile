@@ -12,6 +12,7 @@ gem 'pry'
 gem 'omniauth-twitter'
 gem 'geocoder'
 gem 'faraday'
+gem 'skylight'
 
 group :development, :test do
   gem 'byebug'
