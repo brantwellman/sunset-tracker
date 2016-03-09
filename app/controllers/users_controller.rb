@@ -8,7 +8,4 @@ class UsersController < ApplicationController
     @recents = Location.user_recent_locations(current_user)
     @recent_cleaned = ForecastCleaner.new(@recents, Time.now.to_i)
   end
-
-  def forecast_data
-  end
 end

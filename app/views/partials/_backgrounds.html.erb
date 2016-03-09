@@ -4,6 +4,8 @@
     <body class = "location-info">
   <% elsif current_page?(dashboard_path) %>
     <body class = "user-favorites">
+  <% elsif current_page?(data_path) %>
+    <body class = 'data'>
   <% else %>
     <body class = "location-show">
   <% end %>

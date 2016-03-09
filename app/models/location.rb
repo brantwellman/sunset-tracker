@@ -19,4 +19,9 @@ class Location < ActiveRecord::Base
     where(favorite: 1, user_id: user.id)
   end
 
+  def self.most_frequently_searched
+    top = Location.group(:city).count
+    top.max(5) { |a, b| a[1] <=> b[1] }.to_h
+  end
+
 end
