@@ -1,10 +1,7 @@
 <% if current_user %>
   <nav class="transparent">
     <div class="nav-wrapper">
-      <a href="#" class="sun-logo"></a>
-      <ul id='nav-mobile' class='left'>
-        <li><%= link_to "Logout", logout_path, method: :delete %></li>
-      </ul>
+      <%= link_to image_tag("/assets/sun.png"), root_path, {class: 'sun-logo'} %>
       <ul id="nav-mobile" class="right">
         <% if current_page?(new_location_path) %>
           <li><%= link_to "My Favorites", dashboard_path %></li>
@@ -16,6 +13,7 @@
           <li><%= link_to "My Favorites", dashboard_path %></li>
           <li><%= link_to "Enter Address", new_location_path %></li>
         <% end %>
+        <li><%= link_to "Logout", logout_path, method: :delete %></li>
       </ul>
     </div>
   </nav>
