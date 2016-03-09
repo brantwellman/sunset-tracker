@@ -32,8 +32,6 @@ class LocationsController < ApplicationController
   end
 
   def data
-    # locations = Location.group(:city).count
-    # @locations = locations.to_a[0..4].to_h
     @locations = Location.most_frequently_searched
   end
 

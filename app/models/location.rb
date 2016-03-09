@@ -20,7 +20,8 @@ class Location < ActiveRecord::Base
   end
 
   def self.most_frequently_searched
-    Location.group(:city).count.to_a[0..4].to_h
+    top = Location.group(:city).count
+    top.max(5) { |a, b| a[1] <=> b[1] }.to_h
   end
 
 end
