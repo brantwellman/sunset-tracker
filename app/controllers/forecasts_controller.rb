@@ -1,4 +1,0 @@
-class ForecastsController < ApplicationController
-
-
-end
