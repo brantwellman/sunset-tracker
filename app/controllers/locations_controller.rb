@@ -1,14 +1,10 @@
 require 'open-uri'
 
 class LocationsController < ApplicationController
-  before_action :unauthenticated_user_error, only: [:new, :show]
+  before_action :unauthenticated_user_error, only: [:new, :show, :data]
 
   def new
-    if current_user
-      @location = Location.new
-    else
-      unauthenticated_user_error
-    end
+    @location = Location.new
   end
 
   def show
