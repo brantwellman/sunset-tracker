@@ -13,6 +13,8 @@ gem 'omniauth-twitter'
 gem 'geocoder'
 gem 'faraday'
 gem 'skylight'
+gem 'chartkick'
+gem 'groupdate'
 
 group :development, :test do
   gem 'byebug'
