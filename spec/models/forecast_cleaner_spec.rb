@@ -13,26 +13,6 @@ RSpec.describe "ForecastCleaner", type: :request do
     end
   end
 
-  # it "returns a sunrise time" do
-  #   VCR.use_cassette("forecast_cleaner#sunrise_time") do
-  #     @cleaner = ForecastCleaner.new([location], location.date.to_i)
-  #
-  #     sunrise = @cleaner.sunrise_time(@cleaner.forecasts.first)
-  #
-  #     expect(sunrise).to eq(" 6:30 AM")
-  #   end
-  # end
-
-  # it "returns a sunset time" do
-  #   VCR.use_cassette("forecast_cleaner#sunset_time") do
-  #     @cleaner = ForecastCleaner.new([location], location.date.to_i)
-  #
-  #     sunset = @cleaner.sunset_time(@cleaner.forecasts.first)
-  #
-  #     expect(sunset).to eq(" 5:55 PM")
-  #   end
-  # end
-
   it "returns a sunrise weather summary" do
     VCR.use_cassette("forecast_cleaner#sunrise_weather_sum") do
       @cleaner = ForecastCleaner.new([location], location.date.to_i)
