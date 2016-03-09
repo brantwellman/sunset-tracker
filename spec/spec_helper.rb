@@ -19,7 +19,7 @@ def login(create_user)
 end
 
 def location
-  l = Location.create(
+  location = Location.create(
                   address: "1510 Blake St",
                   city: "Denver",
                   state: "CO",
@@ -28,8 +28,8 @@ def location
                   latitude: 39.749635,
                   longitude: -105.000106
                   )
-  f = Forecast.create(
-                      location_id: l.id,
+  forecast = Forecast.create(
+                      location_id: location.id,
                       cloud_cover: 0.23,
                       precip_prob: 0.23,
                       visibility: 4.5,
@@ -42,7 +42,7 @@ def location
                       sunrise_summary: "Clear",
                       sunset_summary: "Cloudy"
                       )
-  l
+  location
 end
 
 RSpec.configure do |config|

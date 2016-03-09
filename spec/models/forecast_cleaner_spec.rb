@@ -6,7 +6,6 @@ RSpec.describe "ForecastCleaner", type: :request do
   it "creates a forecast" do
     VCR.use_cassette("forecast_cleaner#forecast_create") do
       @cleaner = ForecastCleaner.new([location], location.date.to_i)
-
       forecast = @cleaner.create_forecast(@cleaner.forecasts.first, location)
 
       expect(forecast.cloud_cover).to eq(0.23)
