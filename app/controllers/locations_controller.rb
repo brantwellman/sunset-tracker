@@ -13,7 +13,7 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
-      @cleaner = ForecastCleaner.new([@location], @location.date.to_i)
+    @cleaner = ForecastCleaner.new([@location], @location.date.to_i)
   end
 
   def create

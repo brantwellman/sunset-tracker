@@ -10,11 +10,7 @@ class ForecastService
   end
 
   def forecast_info
-    if location.latitude || location.longitude
-      parse(connection.get("/forecast/#{ENV['DARKSKY_KEY']}/#{location.latitude},#{location.longitude},#{date}"))
-    else
-      puts "bad request"
-    end
+    parse(connection.get("/forecast/#{ENV['DARKSKY_KEY']}/#{location.latitude},#{location.longitude},#{date}"))
   end
 
   private
