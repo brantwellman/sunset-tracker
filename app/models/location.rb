@@ -19,4 +19,8 @@ class Location < ActiveRecord::Base
     where(favorite: 1, user_id: user.id)
   end
 
+  def self.most_frequently_searched
+    Location.group(:city).count.to_a[0..4].to_h
+  end
+
 end

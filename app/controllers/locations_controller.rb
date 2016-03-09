@@ -31,6 +31,12 @@ class LocationsController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def data
+    # locations = Location.group(:city).count
+    # @locations = locations.to_a[0..4].to_h
+    @locations = Location.most_frequently_searched
+  end
+
   private
 
     def location_params

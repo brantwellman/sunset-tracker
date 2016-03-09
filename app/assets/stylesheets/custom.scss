@@ -34,6 +34,15 @@
   background-attachment: fixed;
 }
 
+.data {
+  background: url("/assets/data.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .home-title {
   color: white;
   font-size: 70px;
@@ -140,4 +149,15 @@
 	text-align: center;
 	margin: 10px auto;
 	padding: 5px 20px;
+}
+
+.location-chart {
+  margin-top: 15px;
+}
+
+.data-title {
+  color: white;
+  font-size: 55px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
