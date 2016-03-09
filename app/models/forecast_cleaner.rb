@@ -10,7 +10,6 @@ class ForecastCleaner
         forecast_hashes = ForecastService.new(location, date).forecast_info
         create_forecast(forecast_hashes, location)
         @forecasts << forecast_hashes
-        # binding.pry
       end
     end
   end
