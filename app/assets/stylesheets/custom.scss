@@ -84,7 +84,9 @@
   width: 50%;
   margin-top: 20px;
   margin-bottom: 50px;
-  border-radius: 7px;
+  border-radius: 10px;
+  border: black solid 1px;
+  font-size: 16px;
 }
 
 .form-text {
@@ -110,7 +112,8 @@
   margin-top: 50px;
   margin-bottom: 50px;
   border-radius: 7px;
-  font-size: 16px;
+  font-size: 20px;
+  border: black solid 1px;
 }
 
 #recents-table {
@@ -118,8 +121,9 @@
   color: white;
   margin-top: 10px;
   margin-bottom: 10px;
-  border-radius: 7px;
+  border-radius: 10px;
   font-size: 16px;
+  border: solid black 1px;
 }
 
 #favorites-table {
@@ -127,8 +131,9 @@
   color: white;
   margin-top: 10px;
   margin-bottom: 10px;
-  border-radius: 7px;
+  border-radius: 10px;
   font-size: 16px;
+  border: black solid 1px;
 }
 
 .details {
@@ -160,6 +165,10 @@
 
 .location-chart {
   margin-top: 15px;
+  padding: 20px;
+  background-color: rgba(23, 6, 3, .6);
+  border-radius: 10px;
+  border: black solid 1px;
 }
 
 .data-title {
