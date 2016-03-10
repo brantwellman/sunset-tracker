@@ -31,6 +31,12 @@ class LocationsController < ApplicationController
     @locations = Location.most_frequently_searched
   end
 
+  def today
+    location = Location.find(params["location"])
+    @today_location = create_today(location)
+    redirect_to location_path(@today_location)
+  end
+
   private
 
     def location_params
@@ -58,6 +64,16 @@ class LocationsController < ApplicationController
       else
         @location.update_attribute(:favorite, 0)
       end
+    end
+
+    def create_today
+      @today_location = Location.create(address: location.address,
+                                        city: location.city,
+                                        state: location.state,
+                                        zipcode: location.zipcode,
+                                        user_id: current_user.id,
+                                        date: Date.today
+                                        )
     end
 
 end

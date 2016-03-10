@@ -1,25 +1,28 @@
   <div>
     <div class="row">
-      <div id="favorites-table" class="col m8 offset-m2">
+      <div id="favorites-table" class="col m10 offset-m1">
         <table>
           <thead>
             <tr>
-              <th data-field="id">Location</th>
-              <th data-field="name">Sunrise Time</th>
-              <th data-field="price">Weather</th>
-              <th data-field="name">Sunset Time</th>
-              <th data-field="price">Weather</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Sunrise Time</th>
+              <th>Weather</th>
+              <th>Sunset Time</th>
+              <th>Weather</th>
             </tr>
           </thead>
           <tbody>
             <% @favorites.each_with_index do |favorite, index| %>
                 <tr>
+                  <td><%= favorite.date.strftime("%B %d, %Y") %></td>
                   <td><%= favorite.city %></td>
                   <td><%= @favorite_cleaned.sunrises[index] %></td>
                   <td><%= @favorite_cleaned.sunrises_weather[index] %></td>
                   <td><%= @favorite_cleaned.sunsets[index] %></td>
                   <td><%= @favorite_cleaned.sunsets_weather[index] %></td>
                   <td><%= link_to "Remove from favorites", location_path(favorite) , method: :patch %></td>
+                  <td><%= link_to "Today's Info", today_path(:params => {:location => favorite}), method: :post %></td>
                 </tr>
             <% end %>
           </tbody>
