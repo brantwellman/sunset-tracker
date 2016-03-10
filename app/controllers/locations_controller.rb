@@ -66,7 +66,7 @@ class LocationsController < ApplicationController
       end
     end
 
-    def create_today
+    def create_today(location)
       @today_location = Location.create(address: location.address,
                                         city: location.city,
                                         state: location.state,
